@@ -220,6 +220,7 @@ plt.ylabel('Sum of loss for every epoch')
 plt.xlabel('Epoch')
 plt.legend(['the classification loss', 'the bounding-box loss', 'the mask loss'], loc='upper right')
 plt.show()
+model_path = './model.pkl'
 torch.save(model, model_path)
 #
 end = time.perf_counter()
