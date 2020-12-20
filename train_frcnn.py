@@ -170,8 +170,8 @@ num_classes = 2
 out_channel = 256
 
 # get the model using our helper function
-# model = get_instance_segmentation_model(num_classes)
-model = MobileNetV2(num_classes, out_channel)
+model = get_instance_segmentation_model(num_classes)
+# model = MobileNetV2(num_classes, out_channel)
 
 
 # if torch.cuda.device_count() > 1:
@@ -199,28 +199,28 @@ Loss_b = []
 Loss_m = []
 Count = []
 
-# for epoch in range(num_epochs):
-#     # train for one epoch, printing every 10 iterations
-#     _, loss_c, loss_b, loss_m = train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
-#     Loss_c.append(sum(loss_c))
-#     Loss_b.append(sum(loss_b))
-#     Loss_m.append(sum(loss_m))
-#     # update the learning rate
-#     lr_scheduler.step()
-#     # evaluate on the test dataset
-#     evaluate(model, data_loader_test, device=device)
+for epoch in range(num_epochs):
+    # train for one epoch, printing every 10 iterations
+    _, loss_c, loss_b, loss_m = train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
+    Loss_c.append(sum(loss_c))
+    Loss_b.append(sum(loss_b))
+    Loss_m.append(sum(loss_m))
+    # update the learning rate
+    lr_scheduler.step()
+    # evaluate on the test dataset
+    evaluate(model, data_loader_test, device=device)
 #
-# Count = [i for i in range(num_epochs)]
-# print('--------------', Count)
-# print('---------------', Loss_c)
-# plt.plot(Count, np.array(Loss_c).flatten().squeeze(), color='blue', linewidth=0.8)
-# plt.plot(Count, np.array(Loss_b).flatten().squeeze(), color='red', linewidth=0.8)
-# plt.plot(Count, np.array(Loss_m).flatten().squeeze(), color='black', linewidth=0.8)
-# plt.ylabel('Sum of loss for every epoch')
-# plt.xlabel('Epoch')
-# plt.legend(['the classification loss', 'the bounding-box loss', 'the mask loss'], loc='upper right')
-# plt.show()
-# # torch.save(model, model_path)
+Count = [i for i in range(num_epochs)]
+print('--------------', Count)
+print('---------------', Loss_c)
+plt.plot(Count, np.array(Loss_c).flatten().squeeze(), color='blue', linewidth=0.8)
+plt.plot(Count, np.array(Loss_b).flatten().squeeze(), color='red', linewidth=0.8)
+plt.plot(Count, np.array(Loss_m).flatten().squeeze(), color='black', linewidth=0.8)
+plt.ylabel('Sum of loss for every epoch')
+plt.xlabel('Epoch')
+plt.legend(['the classification loss', 'the bounding-box loss', 'the mask loss'], loc='upper right')
+plt.show()
+torch.save(model, model_path)
 #
-# end = time.perf_counter()
-# print("runtime:", end-start, "s")
+end = time.perf_counter()
+print("runtime:", end-start, "s")
