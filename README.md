@@ -8,7 +8,7 @@ prediction_output is result file directory
 
 ############# result   \############
 
-![Image text](https://github.com/macaldan/INT408_lab2/raw/master/prediction_output/out)\
+![Image text](./prediction_output/000out.png)\
 ![Image text](./prediction_output/001out.png)\
 ![Image text](./prediction_output/002out.png)\
 ![Image text](./prediction_output/003out.png)\
